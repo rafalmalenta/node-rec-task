@@ -1,6 +1,6 @@
 version: "3.2"
 services:
-  app:
+  auth-svc:
     command: node src/server.js
     build:
       context: ./auth-svc
@@ -9,6 +9,18 @@ services:
       - published: ${APP_PORT:-3000}
         target: 3000
     volumes:
-      - .:/auth-svc/
+      - ./auth-svc:/auth-svc/
     environment:
       JWT_SECRET: astring
+  movie-api:
+    command: node src/server.js
+    build:
+      context: ./movie-api
+      dockerfile: Dockerfile
+    volumes:
+      - ./auth-svc:/auth-svc/
+    environment:
+      JWT_SECRET: astring
+    ports:
+      - published: ${APP_PORT:-3001}
+        target: 3001

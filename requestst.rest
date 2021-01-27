@@ -9,3 +9,5 @@ Content-Type: application/json
   "password": "sR-_pcoow-27-6PAwCD8"
 
 }
+###
+GET localhost:3001
