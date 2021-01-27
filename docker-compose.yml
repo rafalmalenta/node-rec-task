@@ -9,6 +9,6 @@ services:
       - published: ${APP_PORT:-3000}
         target: 3000
     volumes:
-      - .:/app/
+      - .:/src/
     environment:
-      JWT_SECRET: ${JWT_SECRET}
+      JWT_SECRET: astring
