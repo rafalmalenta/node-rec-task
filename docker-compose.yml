@@ -3,12 +3,12 @@ services:
   app:
     command: node src/server.js
     build:
-      context: .
+      context: ./auth-svc
       dockerfile: Dockerfile
     ports:
       - published: ${APP_PORT:-3000}
         target: 3000
     volumes:
-      - .:/src/
+      - .:/auth-svc/
     environment:
       JWT_SECRET: astring
