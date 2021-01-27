@@ -24,3 +24,11 @@ services:
     ports:
       - published: ${APP_PORT:-3001}
         target: 3001
+    depends_on:
+      - database
+  database:
+    build:
+      context: prepared-db
+      dockerfile: Dockerfile
+    ports:
+      - 5000:3000
