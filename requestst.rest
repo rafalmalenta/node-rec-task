@@ -1,13 +1,23 @@
+POST localhost:3001/movies
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyMywibmFtZSI6IkJhc2ljIFRob21hcyIsInJvbGUiOiJiYXNpYyIsImlhdCI6MTYxMjk0ODI4MiwiZXhwIjoxNjEyOTUwMDgyLCJpc3MiOiJodHRwczovL3d3dy5uZXRndXJ1LmNvbS8iLCJzdWIiOiIxMjMifQ.XgSwEb4v19dx4D_OTHSjLd72bmKVpKKVSl8pbGKPYdk
+Content-Type: application/json
+
+{}
+
+###
 POST localhost:3000/auth
 Content-Type: application/json
 
 {
-  "id": 123,
   "role": "basic",
   "name": "Basic Thomas",
   "username": "basic-thomas",
   "password": "sR-_pcoow-27-6PAwCD8"
-
 }
+
 ###
-GET localhost:3001
+GET localhost:3001/a
+
+###
+
+

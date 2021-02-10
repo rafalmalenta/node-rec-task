@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-
+const jwt = require("jsonwebtoken");
+const verifyToken = require("./services/verifyToken")
 const PORT = 3001;
 const { JWT_SECRET } = process.env;
 
@@ -11,9 +12,12 @@ if (!JWT_SECRET) {
 const app = express();
 
 app.use(bodyParser.json());
-app.get("/", (req, res, next) =>{
-  console.log("hej");
-});
+
+
+app.post("/movies",verifyToken,(req,res,next) =>{
+
+  console.log(req.user);
+})
 
 
 app.use((error, _, res, __) => {
