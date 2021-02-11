@@ -13,12 +13,9 @@ const app = express();
 
 app.use(bodyParser.json());
 
-
 app.post("/movies",verifyToken,(req,res,next) =>{
-
-  console.log(req.user);
+  console.log(req.user,"zddddsadaea");
 })
-
 
 app.use((error, _, res, __) => {
   console.error(

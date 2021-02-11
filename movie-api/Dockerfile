@@ -1,14 +1,14 @@
 FROM node:14.15-alpine
 
 WORKDIR /app
-
+RUN npm install -g nodemon
 COPY package.json ./
 RUN npm install
 
 RUN mkdir ./src
 COPY ./src ./src
 
-RUN mkdir ./test
-copy ./test ./test
+RUN mkdir ./tests
+copy ./tests ./tests
 
-CMD ["node", "./src/server.js"]
+CMD ["nodemon","-L"]
