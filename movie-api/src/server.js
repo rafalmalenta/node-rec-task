@@ -12,9 +12,13 @@ if (!JWT_SECRET) {
 const app = express();
 
 app.use(bodyParser.json());
+app.use(verifyToken)
 
-app.post("/movies",verifyToken,(req,res,next) =>{
-  console.log(req.user,"zddddsadaea");
+app.post("/movies",(req,res,next) =>{
+
+  if(req.user){
+    res.send(req.body);
+  }
 })
 
 app.use((error, _, res, __) => {

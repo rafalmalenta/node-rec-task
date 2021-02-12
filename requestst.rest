@@ -1,8 +1,10 @@
 POST localhost:3001/movies
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyMywibmFtZSI6IkJhc2ljIFRob21hcyIsInJvbGUiOiJiYXNpYyIsImlhdCI6MTYxMzAyOTYzOSwiZXhwIjoxNjEzMDMxNDM5LCJpc3MiOiJodHRwczovL3d3dy5uZXRndXJ1LmNvbS8iLCJzdWIiOiIxMjMifQ.uRYRix0QM36BWhqU0mxjG5tbuNPIqudUrCloUguuq3c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyMywibmFtZSI6IkJhc2ljIFRob21hcyIsInJvbGUiOiJiYXNpYyIsImlhdCI6MTYxMzEyMDg1NiwiZXhwIjoxNjEzMTIyNjU2LCJpc3MiOiJodHRwczovL3d3dy5uZXRndXJ1LmNvbS8iLCJzdWIiOiIxMjMifQ.RvMbfUCv6SVtD1ZikEBfRg3-I8qhgvHTYDa86q1ZsHk
 Content-Type: application/json
 
-{}
+{
+  "tittle": "terminator"
+}
 
 ###
 POST localhost:3000/auth

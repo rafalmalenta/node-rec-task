@@ -14,8 +14,8 @@ services:
     command: nodemon src/server.js -L
     build: ./movie-api
     volumes:
-      - D:/Strony/nodejs-recruitment/movie-api/src:/app/src
-      - ./tests:/tests
+      - ./movie-api/src:/app/src
+      - ./movie-api/tests:/app/tests
     environment:
       JWT_SECRET: astring
     ports:
