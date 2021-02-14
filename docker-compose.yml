@@ -28,4 +28,4 @@ services:
       context: prepared-db
       dockerfile: Dockerfile
     ports:
-      - 5000:3000
+      - 3306:3306
