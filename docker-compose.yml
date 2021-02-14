@@ -1,6 +1,7 @@
 version: "3.2"
 services:
   auth-svc:
+    container_name: auth
     command: node src/server.js
     build:
       context: ./auth-svc
@@ -11,6 +12,7 @@ services:
     environment:
       JWT_SECRET: astring
   movie-api:
+    container_name: movie-api
     command: nodemon src/server.js -L
     build: ./movie-api
     volumes:
@@ -18,12 +20,19 @@ services:
       - ./movie-api/tests:/app/tests
     environment:
       JWT_SECRET: astring
+      MYSQL_DATABASE: movies
+      MYSQL_USER: rafi
+      MYSQL_PASSWORD: test
     ports:
       - published: ${APP_PORT:-3001}
         target: 3001
     depends_on:
       - database
+    links:
+      - database:localhost
   database:
+    container_name: base
+    command: --default-authentication-plugin=mysql_native_password
     build:
       context: prepared-db
       dockerfile: Dockerfile
