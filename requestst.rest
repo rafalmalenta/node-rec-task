@@ -1,5 +1,5 @@
 POST localhost:3001/movies
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyMywibmFtZSI6IkJhc2ljIFRob21hcyIsInJvbGUiOiJiYXNpYyIsImlhdCI6MTYxMzEyMDg1NiwiZXhwIjoxNjEzMTIyNjU2LCJpc3MiOiJodHRwczovL3d3dy5uZXRndXJ1LmNvbS8iLCJzdWIiOiIxMjMifQ.RvMbfUCv6SVtD1ZikEBfRg3-I8qhgvHTYDa86q1ZsHk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyMywibmFtZSI6IkJhc2ljIFRob21hcyIsInJvbGUiOiJiYXNpYyIsImlhdCI6MTYxMzMyMDE1MSwiZXhwIjoxNjEzMzIxOTUxLCJpc3MiOiJodHRwczovL3d3dy5uZXRndXJ1LmNvbS8iLCJzdWIiOiIxMjMifQ.JErqMArHHC2Po3UB-DJ-8fL0r7hQlQffrb1keIGVsWA
 Content-Type: application/json
 
 {
@@ -11,8 +11,6 @@ POST localhost:3000/auth
 Content-Type: application/json
 
 {
-  "role": "basic",
-  "name": "Basic Thomas",
   "username": "basic-thomas",
   "password": "sR-_pcoow-27-6PAwCD8"
 }

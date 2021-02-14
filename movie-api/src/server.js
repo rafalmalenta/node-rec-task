@@ -2,8 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const verifyToken = require("./services/verifyToken")
+const basicDecorator = require("./services/basicDecorator");
 const PORT = 3001;
 const { JWT_SECRET } = process.env;
+
 
 if (!JWT_SECRET) {
   throw new Error("Missing JWT_SECRET env var. Set it and restart the server");
@@ -16,9 +18,14 @@ app.use(verifyToken)
 
 app.post("/movies",(req,res,next) =>{
 
-  if(req.user){
-    res.send(req.body);
+  let ConnectedUser;
+  if(req.user.role == "premium"){
+    ConnectedUser = premiumDecorator(req.user);
   }
+  else if(req.user.role == "basic"){
+    ConnectedUser = basicDecorator(req.user);
+  }
+
 })
 
 app.use((error, _, res, __) => {
