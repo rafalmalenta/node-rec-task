@@ -3,19 +3,13 @@ let connection = require("./databaseConnect");
 
 function saveMovie (connect,movie,user_id){
 
-    var sql = `INSERT INTO MOVIES (title, released,genre,director,user_posted_id,posting_timestamp)
-                VALUES ('${movie.title}', 
-                        '${movie.released}',
-                        '${movie.genre}',
-                        '${movie.director}',
-                        ${user_id},
-                        NOW())`;
+    const sql =   `INSERT INTO MOVIES (title, released,genre,director,user_posted_id,posting_timestamp) VALUES (?,?,?,?,?,NOW() )`;
+    const valuesArray = [movie.title, movie.released, movie.genre, movie.director, user_id];
     const con = connect();
-    con.query(sql, function (err, result) {
+    con.query(sql,valuesArray, function (err, result) {
         if (err) throw err;
-        console.log(result);
+        return true;
     });
-   // console.log(dsadas)
 
 }
 module.exports = saveMovie;
