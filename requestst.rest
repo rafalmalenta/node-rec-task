@@ -1,5 +1,5 @@
 POST localhost:3001/movies
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEyMywibmFtZSI6IkJhc2ljIFRob21hcyIsInJvbGUiOiJiYXNpYyIsImlhdCI6MTYxMzQxMzc3MCwiZXhwIjoxNjEzNDE1NTcwLCJpc3MiOiJodHRwczovL3d3dy5uZXRndXJ1LmNvbS8iLCJzdWIiOiIxMjMifQ.PtSBH_ZmQh960CJ0b423a4KfWby-Um0X0_EGx-JAiPo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQzNCwibmFtZSI6IlByZW1pdW0gSmltIiwicm9sZSI6InByZW1pdW0iLCJpYXQiOjE2MTM1OTE4OTcsImV4cCI6MTYxMzU5MzY5NywiaXNzIjoiaHR0cHM6Ly93d3cubmV0Z3VydS5jb20vIiwic3ViIjoiNDM0In0.JrWLl-d5r1l13ymC26XRm1IzEW4RGAKLYsuNTcsN8KY
 Content-Type: application/json
 
 {
@@ -11,8 +11,10 @@ POST localhost:3000/auth
 Content-Type: application/json
 
 {
-  "username": "basic-thomas",
-  "password": "sR-_pcoow-27-6PAwCD8"
+  "role": "premium",
+  "name": "Premium Jim",
+  "username": "premium-jim",
+  "password": "GBLtTyq3E_UNjFnpo9m6"
 }
 
 ###

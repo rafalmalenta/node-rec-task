@@ -2,8 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const verifyToken = require("./services/verifyToken")
 const basicDecorator = require("./services/basicDecorator");
-const saveMovie = require("./services/saveMovie");
-let connect = require("./services/databaseConnect");
+const premiumDecorator = require("./services/premiumDecorator");
+let connect = require("./services/DatabaseHandler/databaseConnect");
+const MovieAdder =require("./services/MovieAdder/MovieAdder");
 
 const PORT = 3001;
 
@@ -21,13 +22,9 @@ app.post("/movies",(req,res,next) =>{
   else if(req.user.role === "basic"){
     ConnectedUser = basicDecorator(req.user);
   }
-  let mockMovie ={
-    title: "terminator",
-    genre: "action",
-    released: "2011-03-01",
-    director: "Ben Hernandez",
-  }
-  saveMovie(connect,mockMovie,1);
+  let Adder = new MovieAdder(ConnectedUser,req.body.title,connect);
+  Adder.chooseStrategy();
+  Adder.execute();
 
 })
 
