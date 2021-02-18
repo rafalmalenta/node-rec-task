@@ -28,9 +28,10 @@ app.post("/movies",(req,res) =>{
     try {
       let Adder = new MovieAdder(ConnectedUser, req.body.title, connect);
       Adder.chooseStrategy();
-      await Adder.execute().catch();
-    } catch (e) {
-      return res.status(500).json({error: e});
+      await Adder.execute();
+      return res.status(201).json({response: "created"});
+    } catch (err) {
+      return res.status(500).json({error: err});
     }
   })()
 
