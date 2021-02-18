@@ -1,4 +1,4 @@
-#Its alive
+# Its alive
 ## usage
 1. instal docker and docker-compose
 2. clone or download repository
