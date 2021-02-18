@@ -1,4 +1,11 @@
-# Node.js recruitment task
+#Its alive
+## usage
+1. instal docker and docker-compose
+2. clone or download repository
+3. run docker-compose up
+4. play with requests.rest or use postman api works as explained below   
+5. to run tests "docker exec -it movie-api sh" then npm test tho only 2 tests exist
+# Node.js recruitment task 
 
 We'd like you to build a simple Movie API. It should provide two endpoints:
 
