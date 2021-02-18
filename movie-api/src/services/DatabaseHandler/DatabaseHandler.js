@@ -12,7 +12,7 @@ class DatabaseHandler{
             await promisedSQLQuery(this.connect, sql, valuesArray);
         }catch (error){throw(error)};
     }
-    async countUserThisMonthMovies(){
+    countUserThisMonthMovies(){
         return new Promise((resolve,reject)=>{
             let date = new Date();
             let currentYear = date.getFullYear();
@@ -20,10 +20,23 @@ class DatabaseHandler{
             if(currentMonth<10)
                 currentMonth = "0" + currentMonth.toString();
             const sql =`SELECT COUNT(*) as moviesFromThisMonth from MOVIES where user_posted_id=${this.user.userId} and posting_timestamp like '${currentYear}-${currentMonth}%'`;
-            promisedSQLQuery(this.connect,sql,null).then((res,err)=>{
-                if(err) reject(err);
+            promisedSQLQuery(this.connect,sql,null).then(res =>{
                 resolve(res[0].moviesFromThisMonth);
-            });
+            }).catch(error =>reject(error));
+        });
+    }
+    getUserMovies(){
+        return new Promise((resolve,reject)=>{
+            const sql = `SELECT title, released,genre,director from MOVIES where user_posted_id=${this.user.userId} `;
+            //console.log(sql);
+            promisedSQLQuery(this.connect, sql, null).then((res) => {
+                //console.log(res)
+                resolve(res);
+            })
+                .catch(err=>{
+                    //console.log(err)
+                    reject("zazaq")
+                })
         });
     }
 }

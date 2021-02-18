@@ -10,10 +10,9 @@ class PremiumUserAddMovie{
     async handle() {
         try {
             let movie = await fetchMovie(this.title);
-            let Database = new DatabaseHandler(connect, this.user);
+            let Database = new DatabaseHandler(this.connect, this.user);
             await Database.saveMovie(movie, this.user.userId).catch();
         } catch (e) {
-            //console.log(e)
             throw e;
         }
     }
@@ -34,7 +33,6 @@ class BasicUserAddMovie{
             }
             else throw "you exceeded yours monthly limit"
         }catch (e) {
-           //reject(e)
            throw e;
         }
     }
@@ -57,7 +55,7 @@ class MovieAdder{
         try {
             return await this.addingStrategy.handle().catch();
         }catch (e){
-            throw e;
+            throw "e";
         }
     }
 }

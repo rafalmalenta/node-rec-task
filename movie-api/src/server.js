@@ -5,6 +5,7 @@ const basicDecorator = require("./services/basicDecorator");
 const premiumDecorator = require("./services/premiumDecorator");
 let connect = require("./services/DatabaseHandler/databaseConnect");
 const MovieAdder =require("./services/MovieAdder/MovieAdder");
+const MovieViewer = require("./services/MovieViewer/MovieViewer")
 
 const PORT = 3001;
 
@@ -13,7 +14,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(verifyToken)
 
-app.post("/movies",(req,res,next) =>{
+app.post("/movies",(req,res) =>{
 
   let ConnectedUser;
   if(req.user.role === "premium"){
@@ -33,6 +34,12 @@ app.post("/movies",(req,res,next) =>{
     }
   })()
 
+})
+app.get("/movies",(req,res)=>{
+  const Viewer = new MovieViewer(req.user,connect)
+  Viewer.getUserMovies().then(userMovies=> {
+    return res.status(200).json({ userMovies })
+  });
 })
 
 app.use((error, _, res, __) => {
