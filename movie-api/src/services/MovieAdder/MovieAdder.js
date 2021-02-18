@@ -1,5 +1,4 @@
 const fetchMovie = require("./fetchMovie");
-//const saveMovie = require("../DatabaseHandler/saveMovie");
 const DatabaseHandler = require("../DatabaseHandler/DatabaseHandler");
 const connect = require("../DatabaseHandler/databaseConnect");
 class PremiumUserAddMovie{
@@ -8,10 +7,15 @@ class PremiumUserAddMovie{
         this.user = user;
         this.connect = connect;
     }
-    async handle(){
-        let movie = await fetchMovie(this.title);
-        let Database = new DatabaseHandler(connect);
-        Database.saveMovie( movie, this.user.id);
+    async handle() {
+        try {
+            let movie = await fetchMovie(this.title);
+            let Database = new DatabaseHandler(connect, this.user);
+            await Database.saveMovie(movie, this.user.userId).catch();
+        } catch (e) {
+            //console.log(e)
+            throw e;
+        }
     }
 }
 class BasicUserAddMovie{
@@ -21,13 +25,18 @@ class BasicUserAddMovie{
         this.connect = connect;
     }
     async handle(){
-        let Database = new DatabaseHandler(connect);
-        if(Database.countUserThisMonthMovies(this.user)>this.user.limit){
-            let movie = await fetchMovie(this.title);
-            Database.saveMovie(this.connect, movie, this.user.id);
+       try {
+            let Database = new DatabaseHandler(connect, this.user);
+            let thisMonthMovies = await Database.countUserThisMonthMovies();
+            if (thisMonthMovies < this.user.limit) {
+                let movie = await fetchMovie(this.title);
+                Database.saveMovie(movie, this.user.userId);
+            }
+            else throw "you exceeded yours monthly limit"
+        }catch (e) {
+           //reject(e)
+           throw e;
         }
-        else
-            return  res.status(500).json({ error: "invalid payload" });
     }
 }
 
@@ -44,9 +53,12 @@ class MovieAdder{
         else
             this.addingStrategy = new BasicUserAddMovie(this.title,this.user,this.connect);
     }
-    execute(){
-        //console.log(this.addingStrategy)
-        return  this.addingStrategy.handle();
+    async execute(){
+        try {
+            return await this.addingStrategy.handle().catch();
+        }catch (e){
+            throw e;
+        }
     }
 }
 

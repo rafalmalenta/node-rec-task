@@ -22,9 +22,16 @@ app.post("/movies",(req,res,next) =>{
   else if(req.user.role === "basic"){
     ConnectedUser = basicDecorator(req.user);
   }
-  let Adder = new MovieAdder(ConnectedUser,req.body.title,connect);
-  Adder.chooseStrategy();
-  Adder.execute();
+
+  (async function x() {
+    try {
+      let Adder = new MovieAdder(ConnectedUser, req.body.title, connect);
+      Adder.chooseStrategy();
+      await Adder.execute().catch();
+    } catch (e) {
+      return res.status(500).json({error: e});
+    }
+  })()
 
 })
 
