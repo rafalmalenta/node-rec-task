@@ -28,14 +28,11 @@ class DatabaseHandler{
     getUserMovies(){
         return new Promise((resolve,reject)=>{
             const sql = `SELECT title, released,genre,director from MOVIES where user_posted_id=${this.user.userId} `;
-            //console.log(sql);
             promisedSQLQuery(this.connect, sql, null).then((res) => {
-                //console.log(res)
                 resolve(res);
             })
                 .catch(err=>{
-                    //console.log(err)
-                    reject("zazaq")
+                    reject(err)
                 })
         });
     }
